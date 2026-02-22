@@ -35,9 +35,35 @@ myZip3 _ [] _ = []
 myZip3 _ _ [] = []
 myZip3 (x:xs) (y:ys) (z:zs) = (x, y, z) : myZip3 xs ys zs 
 
+
+-- first version
+{-
 myUnzip :: [(a, b)] -> ([a], [b])
 myUnzip [] = ([], [])
 myUnzip (x:xs) = (fst x : fst (myUnzip xs), snd x : snd (myUnzip xs))
+-}
+
+
+-- second version
+myUnzip :: [(a, b)] -> ([a], [b])
+myUnzip [] = ([], [])
+myUnzip ((a,b):rest) = let (as, bs) = myUnzip rest
+                       in (a:as, b:bs)
+
+------------------------------------------
+
+-- first version
+myFilter :: (a -> Bool) -> [a] -> [a]
+myFilter _ [] = []
+myFilter f (x : xs) | f x == True = x : myFilter f xs 
+                    | f x == False = myFilter f xs 
+
+-- second version
+{-
+myFilter :: (a -> Bool) -> [a] -> [a]
+myFilter _ [] = []
+myFilter f (x : xs) = if f x then x : myFilter f xs else myFilter f xs
+-}
 
 myMap :: (a -> b) -> [a] -> [b]
 myMap _ [] = []
