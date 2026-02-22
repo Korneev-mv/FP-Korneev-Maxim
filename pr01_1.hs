@@ -74,6 +74,24 @@ myZipWith _ [] _ = []
 myZipWith _ _ [] = []
 myZipWith f (x:xs) (y:ys) = f x y : myZipWith f xs ys
 
+myZipWith3 :: (a -> b -> c -> d) -> [a] -> [b] -> [c] ->[d]
+myZipWith3 _ _ _ [] = []
+myZipWith3 _ _ [] _ = []
+myZipWith3 _ [] _ _ = []
+myZipWith3 f (x:xs) (y:ys) (z:zs) = f x y z : myZipWith3 f xs ys zs 
+
+
+myAll :: (a -> Bool) -> [a] -> Bool 
+myAll _ [] = True
+myAll f (x:xs) = if f x then myAll f xs else False
+
+myAny :: (a -> Bool) -> [a] -> Bool
+myAny _ [] = False
+myAny f (x:xs) = if f x then True else myAny f xs 
+
+myComposition :: (a -> a) -> (a -> a) -> a -> a
+myComposition f g x = f (g x)
+
 {-
 
 Напишите реализацию функций myFST, mySND, myTHRD для кортежа (a,b,c)
