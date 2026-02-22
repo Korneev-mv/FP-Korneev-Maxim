@@ -4,11 +4,40 @@
 
 module Pr01_1 where
 
+myHead :: [a] -> a
+myHead (x:xs) = x 
+
+myTail :: [a] -> [a]
+myTail (x:xs) = xs
+
+myTake :: Int -> [a] -> [a]
+myTake 0 _ = []
+myTake _ [] = []
+myTake num (x:xs) = if num == 0 then xs else x : myTake (num - 1) xs 
+
+myDrop :: Int -> [a] -> [a]
+myDrop 0 xs = xs
+myDrop _ [] = []
+myDrop num (x:xs) = if num == 0 then xs else myDrop (num - 1) xs
+
+myProduct :: [Int] -> Int
+myProduct [] = 1
+myProduct (x:xs) = x * myProduct xs
+
 myZip :: [a] -> [b] -> [(a, b)]
 myZip [] xs = []
 myZip xs [] = []
 myZip (x:xs) (y:ys) = (x,y) : myZip xs ys
 
+myZip3 :: [a] -> [b] -> [c] -> [(a, b, c)]
+myZip3 [] _ _ = []
+myZip3 _ [] _ = []
+myZip3 _ _ [] = []
+myZip3 (x:xs) (y:ys) (z:zs) = (x, y, z) : myZip3 xs ys zs 
+
+myUnzip :: [(a, b)] -> ([a], [b])
+myUnzip [] = ([], [])
+myUnzip (x:xs) = (fst x : fst (myUnzip xs), snd x : snd (myUnzip xs))
 
 myMap :: (a -> b) -> [a] -> [b]
 myMap _ [] = []
