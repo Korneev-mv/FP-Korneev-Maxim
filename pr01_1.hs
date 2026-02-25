@@ -4,6 +4,17 @@
 
 module Pr01_1 where
 
+
+myFST :: (a, b, c) -> a  
+myFST (x, y, z) = x 
+
+
+mySND :: (a, b, c) -> b 
+mySND (x, y, z) = y
+
+myTHRD :: (a, b, c) -> c
+myTHRD (x, y, z) = z 
+
 myHead :: [a] -> a
 myHead (x:xs) = x 
 
@@ -89,8 +100,10 @@ myAny :: (a -> Bool) -> [a] -> Bool
 myAny _ [] = False
 myAny f (x:xs) = if f x then True else myAny f xs 
 
-myComposition :: (a -> a) -> (a -> a) -> a -> a
-myComposition f g x = f (g x)
+myComposition :: (a -> a) -> (a -> a) -> a -> a 
+myComposition f g x = f ( g x )
+
+
 
 {-
 
